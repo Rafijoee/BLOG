@@ -81,7 +81,7 @@ class Blog{
         $stmt1->close();
 
         // Query kedua untuk mendapatkan resep berdasarkan id penulis
-        $sql = "SELECT * FROM recipes WHERE penulis = ?";
+        $sql = "SELECT * FROM blog WHERE penulis = ?";
 
         // Menyiapkan statement untuk query kedua
         $stmt = $conn->prepare($sql);
@@ -130,7 +130,7 @@ class Blog{
         $oldSlug = $_POST['oldSlug'];
     
         // Prepare the SQL statement
-        $stmt = $conn->prepare("UPDATE recipes SET judul = ?, slug = ?, penulis = ?, isi = ?, gambar = ?, category_id = ? WHERE slug = ?");
+        $stmt = $conn->prepare("UPDATE blog SET judul = ?, slug = ?, penulis = ?, isi = ?, gambar = ?, category_id = ? WHERE slug = ?");
     
         // Bind the parameters to the SQL query
         $stmt->bind_param("sssssis", $judul, $slug, $penulis, $isi, $gambar, $category_id, $oldSlug);
@@ -151,7 +151,7 @@ class Blog{
     static function destroy($id){
         global $conn;
 
-        $sql = "DELETE FROM recipes WHERE id = $id";
+        $sql = "DELETE FROM blog WHERE id = $id";
         $hasil = $conn->query($sql);
 
         if($hasil){

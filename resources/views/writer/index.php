@@ -52,15 +52,18 @@
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mx-20 my-10">
         <!-- Card 1 -->
+        
+        <?php foreach($blogs as $blog){?>
         <div class="bg-white rounded-lg overflow-hidden shadow-md flex flex-col">
-            <img src="<?= urlpath('images/logo1.png') ?>" alt="Gambar Kartu 1" class="w-full h-72 object-cover rounded-lg">
+        <img class=" rounded-t-lg h-full md:h-full md:w-52 object-cover md:rounded-none md:rounded-s-lg" src="<?= urlpath('assets/images/'.$blog['gambar']) ?>" alt="">
             <div class="p-4 bg-black  flex-grow flex flex-col justify-between mt-4 rounded-b-lg">
-                <h3 class="text-lg font-semibold text-white">Judul</h3>
+                <h3 class="text-lg font-semibold text-white"><?= $blog['judul'] ?></h3>
                 <p class="mb-4" style="color: #A6AFB0">Deskripsi Kartu 1</p>
                 <hr>
-                <a href="#" class="text-white border mt-4 hover-button py-2 px-4 rounded-lg text-center" style="border-radius: 1.5rem;">Read More</a>
+                <a href="<?= urlpath('blog?slug='.$blog['slug']) ?>" class="text-white border mt-4 hover-button py-2 px-4 rounded-lg text-center" style="border-radius: 1.5rem;">Read More</a>
             </div>
         </div>
+        <?php } ?>
     </div>
 </main>
 

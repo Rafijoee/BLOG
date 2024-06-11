@@ -1,5 +1,5 @@
-<header style="position: fixed; top: 0; width: 100%; z-index: 1000;">
-    <nav class="relative w-full z-20 top-0 left-0 bg-black border-gray-200 px-2 sm:px-4 rounded dark:border-gray-200 dark:bg-white m-0 mb-5 navbar-solid-bg">
+<header class="fixed top-0 w-full z-1000">
+    <nav class="relative w-full z-20 top-0 left-0 bg-black bg-opacity-50 border-gray-200 px-2 sm:px-4 rounded dark:border-gray-200 dark:bg-white m-0 mb-5 navbar-solid-bg">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <a href="#" class="flex items-center rtl:space-x-reverse">
                 <img src="<?= urlpath('images/logo.png') ?>" alt="Logo" style="height: 50px;" />
@@ -24,7 +24,8 @@
         </div>
     </nav>
 </header>
-<body class="bg-black">
+
+<body class="bg-black" style="background-image: url('<?= urlpath('images/create.jpg') ?>'); background-size: cover; background-position: center;">
     <main class="flex items-center justify-center min-h-screen my-24">
         <div class="bg-white shadow-md rounded-lg p-10 w-full max-w-3xl">
             <h1 class="text-4xl text-center font-bold mb-8 text-tua">Buat Postingan Untuk Blog Anda!</h1>
@@ -46,9 +47,9 @@
                     </select>
                 </div>
                 <div class="mb-6">
-                <label for="isi" class="block text-sm font-medium text-gray-300">Isi Postingan</label>
+                    <label for="isi" class="block text-sm font-medium text-gray-300">Isi Postingan</label>
                     <input type="hidden" name="isi" id="isi">
-                    <textarea input="isi" class="mt-1 w-full border rounded-md text-white trix-editor"></textarea>
+                    <trix-editor input="isi" class="mt-3 bg-white"></trix-editor>
                 </div>
                 <div class="mb-6">
                     <label for="gambar" class="block text-sm font-medium text-muda">Gambar</label>
@@ -61,4 +62,4 @@
         </div>
     </main>
 
-<?php include 'resources/views/master/master.php'; ?>
+    <?php include 'resources/views/master/master.php'; ?>

@@ -16,7 +16,7 @@ class AuthController {
         view('restricted',['url'=> 'restricted']);
     }
     static function blog(){
-        view('resep',['url'=> 'resep', 'recipes' => Blog::finds($_GET['slug']), 'category' => Category::select(), 'comments' => Comment::select()]);
+        view('blog',['url'=> 'blog', 'blogs' => Blog::finds($_GET['slug']), 'category' => Category::select(), 'comments' => Comment::select()]);
     }
     static function comment(){
         if (!isset($_SESSION['user'])) {
