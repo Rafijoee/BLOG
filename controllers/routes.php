@@ -22,7 +22,7 @@ Router::url('dashboard-admin/laporan', 'get', 'AdminController::laporan');
 
 //dashboard writer
 Router::url('dashboard-writer', 'get', 'WriterController::index');
-Router::url('dashboard-writer/show', 'get', 'WriterController::show');
+Router::url('my-blog', 'get', 'WriterController::show');
 Router::url('dashboard-writer/create', 'get', 'WriterController::create');
 Router::url('dashboard-writer/create', 'post', 'WriterController::store');
 Router::url('dashboard-writer/edit', 'get', 'WriterController::edit');
@@ -30,8 +30,6 @@ Router::url('dashboard-writer/edit', 'post', 'WriterController::update');
 Router::url('dashboard-writer/delete', 'get', 'WriterController::delete');
 // Router::url('dashboard-writer/store', 'post', 'WriterController::store');
 
-// dashboard reader
-Router::url('dashboard', 'get', 'ReaderController::index');
 
 Router::url('/', 'get', function () {
     if (isset($_SESSION['user']['role_id']) == '2') {

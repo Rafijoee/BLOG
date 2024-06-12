@@ -7,18 +7,27 @@
             </a>
             <div class="flex md:order-2 space-x-3 rtl:space-x-reverse">
                 <a href="<?= urlpath('dashboard-writer/create') ?>" type="button" class="text-white bulet bg-muda hover:text-white hover:bg-[#686868] focus:ring-4 font-medium rounded-lg text-sm px-8 py-2 text-center hover-button justify-center mr-4   items-center">Tulis</a>
-                <a href="<?= urlpath('login') ?>" type="button" class="text-white bulet bg-muda hover:text-white hover:bg-[#686868] focus:ring-4 font-medium rounded-lg text-sm px-6 py-2 text-center hover-button justify-center items-center">Masuk</a>
+                <a href="<?= urlpath('logout') ?>" type="button" class="text-white bulet bg-muda hover:text-white hover:bg-[#686868] focus:ring-4 font-medium rounded-lg text-sm px-6 py-2 text-center hover-button justify-center items-center">Log Out</a>
             </div>
             <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-cta">
                 <ul class="flex font-medium text-white space-x-8 items-center text-sm">
                     <li>
-                        <a href="#" class="block py-0 px-3 md:p-0 text-white bg-blue-700 rounded md:bg-transparent md:text-white md:dark:text-blue-500 custom-hover" aria-current="page">Blog</a>
+                        <a href="<?= urlpath('back') ?>" class="block py-0 px-3 md:p-0 text-white bg-blue-700 rounded md:bg-transparent md:text-white md:dark:text-blue-500 custom-hover" aria-current="page">Blog</a>
+                    </li>
+                    <li>
+                        <a href="<?= urlpath('my-blog') ?>" class="block py-0 px-3 md:p-0 text-white bg-blue-700 rounded md:bg-transparent md:text-white md:dark:text-blue-500 custom-hover" aria-current="page">My Blogs</a>
                     </li>
                     <li>
                         <a href="#" class="block p-0 px-3 custom-hover md:p-0 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Sports</a>
                     </li>
                     <li>
                         <a href="#" class="block p-0 px-3 md:p-0 text-white custom-hover rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Foods</a>
+                    </li>
+                    <li>
+                        <a href="#" class="block p-0 px-3 md:p-0 text-white custom-hover rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">News</a>
+                    </li>
+                    <li>
+                        <a href="#" class="block p-0 px-3 md:p-0 text-white custom-hover rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Future</a>
                     </li>
                 </ul>
             </div>
@@ -58,7 +67,6 @@
         <img class=" rounded-t-lg h-full md:h-full md:w-52 object-cover md:rounded-none md:rounded-s-lg" src="<?= urlpath('assets/images/'.$blog['gambar']) ?>" alt="">
             <div class="p-4 bg-black  flex-grow flex flex-col justify-between mt-4 rounded-b-lg">
                 <h3 class="text-lg font-semibold text-white"><?= $blog['judul'] ?></h3>
-                <p class="mb-4" style="color: #A6AFB0">Deskripsi Kartu 1</p>
                 <hr>
                 <a href="<?= urlpath('blog?slug='.$blog['slug']) ?>" class="text-white border mt-4 hover-button py-2 px-4 rounded-lg text-center" style="border-radius: 1.5rem;">Read More</a>
             </div>

@@ -7,10 +7,10 @@ class User
     static function login($data = [])
     {
         global $conn;
-    
+
         $email = $data['email'];
         $password = $data['password'];
-    
+
         $result = $conn->query("SELECT * FROM users WHERE email = '$email'");
         if ($result = $result->fetch_assoc()) {
             $hashedPassword = $result['password'];
@@ -22,7 +22,7 @@ class User
             }
         }
     }
-    
+
     static function register($data = [])
     {
         global $conn;
@@ -52,18 +52,38 @@ class User
         $result = $stmt->affected_rows > 0 ? true : false;
         return $result;
     }
-    static function select(){
+    static function select()
+    {
         global $conn;
         $sql = "SELECT * FROM users";
 
         $result = $conn->query($sql);
         $arr = [];
 
-        if($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()){
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
                 $arr[] = $row;
             }
         }
         return $arr;
+    }
+    public static function findUserByUsernameOrEmail($username, $email)
+    {
+        global $conn;
+        if ($conn->connect_error) {
+            die("Koneksi gagal: " . $conn->connect_error);
+        }
+
+        $username = $conn->real_escape_string($username);
+        $email = $conn->real_escape_string($email);
+
+        $query = "SELECT username, email FROM users WHERE username = '$username' OR email = '$email' LIMIT 1";
+        $result = $conn->query($query);
+
+        if ($result->num_rows > 0) {
+            return $result->fetch_assoc();
+        } else {
+            return null;
+        }
     }
 }
