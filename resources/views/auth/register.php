@@ -1,3 +1,5 @@
+<?php $title = 'Register' ?>
+<?php ob_start()?>   
     <video autoplay loop muted id="video-background">
         <source src="<?= urlpath('images/login.mp4') ?>" type="video/mp4">
         <!-- Tambahkan sumber video lainnya jika diperlukan -->
@@ -49,39 +51,39 @@
     <script>
         $(document).ready(function() {
             function sendDataToBackend() {
-                var form = document.getElementById('registerForm');
-                var formData = new FormData(form);
-
-                console.log("Sending data to backend..."); // Debug statement
-                console.log("Form Data:", formData); // Debug statement
-
-                $.ajax({
-                    type: 'POST',
-                    url: '<?= urlpath('register') ?>', // Construct URL dynamically
-                    data: formData,
-                    processData: false,
-                    contentType: false,
-                    success: function(data) {
-                        window.location.href = '<?= urlpath('login') ?>'; // Redirect dynamically
-                        alert('Berhasil Membuat Akun!');
-                    },
-                    error: function(xhr, status, error) {
-                        console.error("Error:", xhr.responseText); // Debug statement
-                        try {
-                            var response = JSON.parse(xhr.responseText);
-                            alert(response.message);
-                        } catch (e) {
-                            alert("Terjadi kesalahan, mohon coba lagi");
+                if($('#registerForm').valid()) {          
+                    var form = document.getElementById('registerForm');
+                    var formData = new FormData(form);
+    
+                    console.log("Sending data to backend..."); // Debug statement
+                    console.log("Form Data:", formData); // Debug statement
+    
+                    $.ajax({
+                        type: 'POST',
+                        url: '<?= urlpath('register') ?>', // Construct URL dynamically
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        success: function(data) {
+                            window.location.href = '<?= urlpath('login') ?>'; // Redirect dynamically
+                            alert('Berhasil Membuat Akun!');
+                        },
+                        error: function(xhr, status, error) {
+                            console.error("Error:", xhr.responseText); // Debug statement
+                            try {
+                                var response = JSON.parse(xhr.responseText);
+                                alert(response.message);
+                            } catch (e) {
+                                alert("Terjadi kesalahan, mohon coba lagi");
+                            }
                         }
-                    }
-                });
+                    });
+                }
             }
-
             $('#submit2').click(function() {
                 console.log("Submit button clicked"); // Debug statement
                 sendDataToBackend();
             }); // Attach event handler
-
             $('#registerForm').validate({
                 rules: {
                     email: {
@@ -128,4 +130,6 @@
             });
         });
     </script>
-    <?php include 'resources/views/master/master.php'; ?>
+<?php $body = ob_get_clean(); ?>
+
+<?php include 'resources/views/master/master.php'; ?>

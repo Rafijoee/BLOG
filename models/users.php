@@ -30,11 +30,14 @@ class User
         $name = $data['name'];
         $password = $data['password'];
         $email = $data['email'];
+        $role_id = $data['role_id'];
+        $created_at = $data['created_at'];
+        $updated_at = $data['updated_at'];
 
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-        $sql = "INSERT INTO users SET name = ?, password = ?, email = ?";
+        $sql = "INSERT INTO users SET username = ?, password = ?, email = ?, role_id = ?, created_at = ?, updated_at = ?";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param('sss', $name, $hashedPassword, $email);
+        $stmt->bind_param('sssiss', $name, $hashedPassword, $email, $role_id, $created_at, $updated_at);
         $stmt->execute();
 
         $result = $stmt->affected_rows > 0 ? true : false;
