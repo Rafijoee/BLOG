@@ -15,10 +15,11 @@ Router::url('login', 'post', 'AuthController::sessionLogin');
 Router::url('register', 'get', 'AuthController::register');
 Router::url('register', 'post', 'AuthController::newRegister');
 Router::url('logout', 'get', 'AuthController::logout');
+Router::url('back', 'get', 'AuthController::back');
 
 //dashboard admin
 Router::url('dashboard-admin', 'get', 'AdminController::index');
-Router::url('dashboard-admin/laporan', 'get', 'AdminController::laporan');
+Router::url('laporan', 'get', 'AdminController::laporan');
 
 //dashboard writer
 Router::url('dashboard-writer', 'get', 'WriterController::index');

@@ -1,7 +1,7 @@
 <header style="position: fixed; top: 0; width: 100%; z-index: 1000;">
     <nav class="relative w-full z-20 top-0 left-0 bg-black border-gray-200 px-2 sm:px-4 rounded dark:border-gray-200 dark:bg-white m-0 mb-5 navbar-solid-bg">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-            <a href="="<?= urlpath('back') ?>" class="flex items-center rtl:space-x-reverse">
+            <a href="<?= urlpath('back') ?>" class="flex items-center rtl:space-x-reverse">
                 <img src="<?= urlpath('images/logo.png') ?>" alt="Logo" style="height: 50px;" />
                 <p class="pl-1"></p>
             </a>
