@@ -5,30 +5,35 @@ include_once 'function/main.php';
 include_once 'app/config/static.php';
 include_once 'models/blogs.php';
 
-class WriterController{
-    static function index(){
+class WriterController
+{
+    static function index()
+    {
         $user = $_SESSION['user'];
         $user_role = $user['role_id'];
-        
-        if($user_role == '2'){
+
+        if ($user_role == '2') {
             view('writer/index', ['url' => 'dashboard-writer', 'blogs' => Blog::select($_SESSION['user']['id'])]);
-        }else{
+        } else {
             header('location: restricted');
         }
     }
 
-    static function show(){
-        view('writer/show', ['url' => 'dashboard-writer/show','users' => User::select($_SESSION['user']['id']), 'blogs' => Blog::show($_SESSION['user']['username']), 'category' => Category::select($_SESSION['user']['id'])]);
+    static function show()
+    {
+        view('writer/show', ['url' => 'dashboard-writer/show', 'users' => User::select($_SESSION['user']['id']), 'blogs' => Blog::show($_SESSION['user']['username']), 'category' => Category::select($_SESSION['user']['id'])]);
     }
 
-    static function create(){
+    static function create()
+    {
         view('writer/create', ['url' => 'dashboard-writer/create', 'categories' => Category::select($_SESSION['user']['id'])]);
     }
 
-    static function store(){
+    static function store()
+    {
         if (!isset($_SESSION['user'])) {
             header('Location: login');
-        }else{
+        } else {
             $post = array_map('htmlspecialchars', $_POST);
 
             if ($_FILES['gambar']['error'] === UPLOAD_ERR_OK) {
@@ -36,26 +41,26 @@ class WriterController{
                 $gambarTmpName = $_FILES['gambar']['tmp_name'];
                 $gambarSize = $_FILES['gambar']['size'];
                 $gambarType = $_FILES['gambar']['type'];
-    
+
                 // Check if the uploaded file is an image
                 $allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];
                 if (!in_array($gambarType, $allowedTypes)) {
                     setFlashMessage('error', 'File yang diupload harus berupa gambar');
                     return;
                 }
-    
+
                 // Define the directory to save the uploaded image
                 $uploadDir = __DIR__ . '/../assets/images/';
                 if (!is_dir($uploadDir)) {
                     mkdir($uploadDir, 0777, true);
                 }
-    
+
                 // Generate a new unique file name with current timestamp
                 $timestamp = time();
                 $fileExtension = pathinfo($gambarName, PATHINFO_EXTENSION);
                 $newFileName = basename($gambarName, ".$fileExtension") . "_" . $timestamp . ".$fileExtension";
                 $gambarPath = $uploadDir . $newFileName;
-    
+
                 // Move the uploaded image to the specified directory
                 if (move_uploaded_file($gambarTmpName, $gambarPath)) {
                     $post['gambar'] = $newFileName; // Store only the file name in the database
@@ -80,23 +85,25 @@ class WriterController{
             );
             // urlpath('dashboard-writer/show');
             // view('writer/show', ['url' => 'dashboard-writer/show', 'shows' => Recipe::show($_SESSION['user']['username']), 'category' => Category::select($_SESSION['user']['id'])]);
-            
+
             if ($blog) {
-                header('Location:' .BASEURL. 'dashboard-writer');
+                header('Location:' . BASEURL . 'dashboard-writer');
                 // header('Location: dashboard-writer/show');
                 exit();
-            }else{
+            } else {
                 echo ('Terjadi Kesalahan');
             }
         }
     }
-    static function edit(){
-        view('writer/edit', ['url' => 'dashboard-writer/edit', 'blog' => Blog::finds($_GET['slug']), 'users' => User::select($_SESSION['user']['id']), 'categories' => Category::select($_SESSION['user']['id'])]);
+    static function edit()
+    {
+        view('writer/edit', ['url' => 'dashboard-writer/edit', 'blog' => Blog::finds($_GET['slug']), 'users' => User::select($_SESSION['user']['id']), 'categorys' => Category::select()]);
     }
-    static function update(){
+    static function update()
+    {
         if (!isset($_SESSION['user'])) {
             header('Location: login');
-        }else{
+        } else {
             // var_dump($recipe['slug']);
             $post = array_map('htmlspecialchars', $_POST);
             $recipe = Blog::update(
@@ -108,23 +115,23 @@ class WriterController{
                 $post['category_id'],
             );
             if ($recipe) {
-                header('Location:' .BASEURL. 'dashboard-writer/show');
+                header('Location:' . BASEURL . 'dashboard-writer/show');
                 exit();
             } else {
                 echo ('Terjadi Kesalahan');
             }
         }
     }
-    static function delete(){
+    static function delete()
+    {
         $post = array_map('htmlspecialchars', $_POST);
         $id = $_GET['id'];
         $recipe = Blog::destroy($id);
         if ($recipe) {
-            header('Location:' .BASEURL. 'dashboard-writer/show');
+            header('Location:' . BASEURL . 'dashboard-writer/show');
             exit();
         } else {
             echo ('Terjadi Kesalahan');
         }
     }
-
 }

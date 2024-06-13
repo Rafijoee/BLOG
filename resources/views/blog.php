@@ -41,8 +41,8 @@
                         <h1 class="text-4xl font-bold text-black text-center"><?= $blog[0]['judul'] ?></h1>
                         <div class="mt-2 flex flex-col items-start">
                             <p class="text-sm text-black mt-2">Ditulis Oleh: <?= $users[$blog[0]['penulis'] - 1]['username'] ?></p>
-                            <p class="text-sm text-black mt-2">Kategori: <?= $category[$blog[0]['category_id']]['nama'] ?></p>
-                            <p class="text-sm text-black mt-2">Tanggal Publikasi: <?=date("l, d F Y\nH:i", strtotime($blog[0]['created_at'])) . ' WIB' ?></p>
+                            <p class="text-sm text-black mt-2">Kategori: <?= $category[$blog[0]['category_id'] - 1]['nama'] ?></p>
+                            <p class="text-sm text-black mt-2">Tanggal Publikasi: <?= date("l, d F Y\nH:i", strtotime($blog[0]['created_at'])) . ' WIB' ?></p>
                         </div>
                     </header>
                     <img src="<?= urlpath('assets/images/' . $blog[0]['gambar']) ?>" alt="" class="flex self-center rounded-lg gambar-h shadow-md shadow-gray-700  object-cover">
