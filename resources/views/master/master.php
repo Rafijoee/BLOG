@@ -67,6 +67,9 @@
             height: 45vh;
         }
 
+        .gambar-pie{
+            height: 70vh;
+        }
         .gambar-w{
             width: 90vw;
         }

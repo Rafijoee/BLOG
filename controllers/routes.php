@@ -19,7 +19,7 @@ Router::url('back', 'get', 'AuthController::back');
 
 //dashboard admin
 Router::url('dashboard-admin', 'get', 'AdminController::index');
-Router::url('laporan', 'get', 'AdminController::laporan');
+Router::url('dashboard-admin/laporan', 'get', 'AdminController::laporan');
 
 //dashboard writer
 Router::url('dashboard-writer', 'get', 'WriterController::index');

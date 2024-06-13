@@ -14,7 +14,7 @@
                         <a href="<?= urlpath('back') ?>" class="block py-0 px-3 md:p-0 text-white bg-blue-700 rounded md:bg-transparent md:text-white md:dark:text-blue-500 custom-hover" aria-current="page">Blog</a>
                     </li>
                     <li>
-                        <a href="<?= urlpath('laporan') ?>" class="block p-0 px-3 md:p-0 text-white custom-hover rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Laporan</a>
+                        <a href="<?= urlpath('dashboard-admin/laporan') ?>" class="block p-0 px-3 md:p-0 text-white custom-hover rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Laporan</a>
                     </li>
                 </ul>
             </div>
@@ -22,94 +22,71 @@
     </nav>
 </header>
 
-<div class="container mx-auto mt-20">
-    <canvas id="myChart" width="400" height="200"></canvas>
+<div class="container mx-auto mt-20 flex justify-center">
+    <div class="mx-40 bg-white bulet flex-col flex w-full">
+        <h2 class="text-4xl font-bold mx-4 pt-10 text-center">Jumlah Blogs Keseluruhan Waktu</h2>
+        <div class="gambar-pie flex justify-center items-center m-10">
+            <canvas id="overallChart" width="400" height="200"></canvas>
+        </div>
+    </div>
 </div>
-
-<?php
-$kategori1 = [];
-$kategori2 = [];
-$kategori3 = [];
-$kategori4 = [];
-$kategori5 = [];
-foreach ($blogs as $blog) {
-    if ($blog['category_id'] == 1) {
-        $kategori1[] = $blog;
-    } elseif ($blog['category_id'] == 2) {
-        $kategori2[] = $blog;
-    } elseif ($blog['category_id'] == 3) {
-        $kategori3[] = $blog;
-    } elseif ($blog['category_id'] == 4) {
-        $kategori4[] = $blog;
-    } elseif ($blog['category_id'] == 5) {
-        $kategori5[] = $blog;
-    }
-}
-?>
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        var ctx = document.getElementById('myChart').getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'bar',
+        // Overall Pie Chart
+        var overallCtx = document.getElementById('overallChart').getContext('2d');
+        var overallChart = new Chart(overallCtx, {
+            type: 'pie', // Ubah tipe grafik menjadi 'pie'
             data: {
-                labels: ['Semua blogs', 'blogs "Sport"', 'blogs "Education"', 'blogs "News"', 'blogs "Fiture"', 'blogs "Lainnya"'],
+                labels: ['Semua blogs', 'Category: "Sport"', 'Category: "Education"', 'Category: "News"', 'Category: "Fiture"', 'Category: "Lainnya"'],
                 datasets: [{
                     label: 'Jumlah blogs',
                     data: [
-                        <?php echo count($blogs); ?>,
-                        <?php echo count($kategori1); ?>,
-                        <?php echo count($kategori2); ?>,
-                        <?php echo count($kategori3); ?>,
-                        <?php echo count($kategori4); ?>,
-                        <?php echo count($kategori5); ?>
+                        <?= count($blogs); ?>,
+                        <?= count($kategori1); ?>,
+                        <?= count($kategori2); ?>,
+                        <?= count($kategori3); ?>,
+                        <?= count($kategori4); ?>,
+                        <?= count($kategori5); ?>
                     ],
                     backgroundColor: [
-                        'lightblue',
-                        'lightgreen',
-                        'lightyellow',
-                        'lightcoral',
-                        'rgba(238,130,238)',
-                        'lightgray'
+                        '#6CA4AD',
+                        '#B0B0B0',
+                        '#3A5A64',
+                        '#85A8B2', // Warna netral lebih muda
+                        '#344657', // Warna yang lebih gelap lagi dari '#415268'
+                        '#9CAEBF' // Warna netral lebih muda lagi
                     ],
                     borderColor: [
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(255, 182, 193, 1)',
-                        'rgba(211, 211, 211, 1)'
+                        '#3A4A5B', // Warna garis batas yang lebih gelap
+                        '#52677D', // Warna garis batas yang lebih terang dari '#3A4A5B'
+                        '#2B3C4D', // Warna garis batas yang lebih gelap lagi dari '#52677D'
+                        '#6E7F91', // Warna garis batas netral lebih muda
+                        '#273743', // Warna garis batas yang lebih gelap dari '#2B3C4D'
+                        '#B2C1D0' // Warna garis batas netral lebih muda lagi
                     ],
                     borderWidth: 1
                 }]
             },
             options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                },
                 plugins: {
                     legend: {
-                        display: false
+                        position: 'right', // Atur posisi legend di sebelah kanan
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                return tooltipItem.label + ': ' + tooltipItem.formattedValue; // Tampilkan label dan nilai data di tooltip
+                            }
+                        }
                     }
                 }
             }
         });
-
-        // Debugging: Log data to console
-        console.log({
-            labels: ['Semua blogs', 'blogs "Sport"', 'blogs "Education"', 'blogs "News"', 'blogs "Fiture"', 'blogs "Lainnya"'],
-            data: [
-                <?php echo count($blogs); ?>,
-                <?php echo count($kategori1); ?>,
-                <?php echo count($kategori2); ?>,
-                <?php echo count($kategori3); ?>,
-                <?php echo count($kategori4); ?>,
-                <?php echo count($kategori5); ?>
-            ]
-        });
     });
 </script>
+
+<?php include 'resources/views/master/master.php'; ?>
+
 
 <?php include 'resources/views/master/master.php'; ?>

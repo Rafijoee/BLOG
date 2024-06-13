@@ -14,12 +14,49 @@
                         <a href="<?= urlpath('back') ?>" class="block py-0 px-3 md:p-0 text-white bg-blue-700 rounded md:bg-transparent md:text-white md:dark:text-blue-500 custom-hover" aria-current="page">Blog</a>
                     </li>
                     <li>
-                        <a href="<?= urlpath('laporan') ?>" class="block p-0 px-3 md:p-0 text-white custom-hover rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Laporan</a>
+                        <a href="<?= urlpath('dashboard-admin/laporan') ?>" class="block p-0 px-3 md:p-0 text-white custom-hover rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Laporan</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 </header>
+<main>
+    <div class="flex flex-col justify-center items-center text-white">
+        <!-- Content here -->
+        <a href="#" class="text-4xl text-center font-bold">Buat Artikel Menarik Anda </a>
+        <h3 class="w-2/3 mt-5 text-tua text-center">
+            Bagikan berbagai artikel menarik yang Anda tulis bersama kami. Dari tips <span class="text-muda">gaya hidup</span>, teknologi terbaru hingga <span class="text-muda">cerita perjalanan</span> yang memukau, inspirasi dan <span class="text-muda">memperkaya</span> wawasan pembaca setiap hari.
+        </h3>
+    </div>
+    <div class="flex flex-col justify-center items-center text-white">
+        <a href="" class="text-4xl mt-10 text-center font-bold">Mulailah Perjalanan Blogging Anda Hari Ini!</a>
+        <h3 class="w-2/3 mt-5 text-tua text-center">
+            Tidak ada waktu yang lebih baik dari <span class="text-muda">sekarang</span> untuk mulai berbagi cerita Anda. <span class="text-muda ">Daftarlah</span> hari ini dan <span class="text-muda ">mulailah</span> <span class="text-muda ">perjalanan</span> blogging Anda bersama kami. Kami tidak sabar untuk <span class="text-muda">membaca tulisan</span> Anda dan melihat dunia melalui <span class="text-muda">perspektif</span> Anda.
+        </h3>
+    </div>
+
+    <hr class="mt-10 bg-tua">
+    <div class="mt-20 text-white flex justify-center font-bold text-2xl">
+        <h1>Artikels</h1>
+    </div>
+    <div class="w-full -mt-5">
+        <a href="" class="flex justify-center">
+            <img src="<?= urlpath('images/karosel.png') ?>" class="w-full m-12 rounded-3xl" alt="">
+        </a>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mx-20 my-10">
+        <?php foreach ($blogs as $blog) { ?>
+            <div class="bg-white rounded-lg overflow-hidden shadow-md flex flex-col border">
+                <img class="mx-auto mx-4 mt-4 rounded-lg h-full md:h-full md:w-52 object-cover md:rounded-none md:rounded-lg block" src="<?= urlpath('assets/images/' . $blog['gambar']) ?>" alt="">
+                <div class="p-4 bg-black flex-grow flex flex-col justify-between mt-4 rounded-b-lg">
+                    <h3 class="text-lg font-semibold text-white"><?= $blog['judul'] ?></h3>
+                    <hr>
+                    <a href="<?= urlpath('blog?slug=' . $blog['slug']) ?>" class="text-white border mt-4 hover-button py-2 px-4 rounded-lg text-center" style="border-radius: 1.5rem;">Read More</a>
+                </div>
+            </div>
+        <?php } ?>
+    </div>
+</main>
 
 <?php include 'resources/views/master/master.php'; ?>

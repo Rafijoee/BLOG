@@ -29,7 +29,7 @@
 </header>
 
 <main>
-    <div class="mt-24 flex flex-col justify-center items-center text-white">
+    <div class="flex flex-col justify-center items-center text-white">
         <!-- Content here -->
         <a href="#" class="text-4xl text-center font-bold">Buat Artikel Menarik Anda </a>
         <h3 class="w-2/3 mt-5 text-tua text-center">
