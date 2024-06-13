@@ -6,16 +6,11 @@
                 <p class="pl-1"></p>
             </a>
             <div class="flex md:order-2 space-x-3 rtl:space-x-reverse">
-                <a href="<?= urlpath('dashboard-writer/create') ?>" type="button" class="text-white bulet bg-muda hover:text-white hover:bg-[#686868] focus:ring-4 font-medium rounded-lg text-sm px-8 py-2 text-center hover-button justify-center mr-4   items-center">Tulis</a>
-                <a href="<?= urlpath('login') ?>" type="button" class="text-white bulet bg-muda hover:text-white hover:bg-[#686868] focus:ring-4 font-medium rounded-lg text-sm px-6 py-2 text-center hover-button justify-center items-center">Masuk</a>
             </div>
             <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-cta">
                 <ul class="flex font-medium text-white space-x-8 items-center text-sm">
                     <li>
                         <a href="<?= urlpath('back') ?>" class="block py-0 px-3 md:p-0 text-white bg-blue-700 rounded md:bg-transparent md:text-white md:dark:text-blue-500 custom-hover" aria-current="page">Blog</a>
-                    </li>
-                    <li>
-                        <a href="<?= urlpath('my-blog') ?>" class="block py-0 px-3 md:p-0 text-white bg-blue-700 rounded md:bg-transparent md:text-white md:dark:text-blue-500 custom-hover" aria-current="page">My Blogs</a>
                     </li>
                     <li>
                         <a href="#" class="block p-0 px-3 custom-hover md:p-0 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Sports</a>
@@ -47,7 +42,7 @@
                         <div class="mt-2 flex flex-col items-start">
                             <p class="text-sm text-black mt-2">Ditulis Oleh: <?= $users[$blog[0]['penulis'] - 1]['username'] ?></p>
                             <p class="text-sm text-black mt-2">Kategori: <?= $category[$blog[0]['category_id']]['nama'] ?></p>
-                            <p class="text-sm text-black mt-2">Tanggal Publikasi: 3 Juni 2024</p>
+                            <p class="text-sm text-black mt-2">Tanggal Publikasi: <?=date("l, d F Y\nH:i", strtotime($blog[0]['created_at'])) . ' WIB' ?></p>
                         </div>
                     </header>
                     <img src="<?= urlpath('assets/images/' . $blog[0]['gambar']) ?>" alt="" class="flex self-center rounded-lg gambar-h shadow-md shadow-gray-700  object-cover">

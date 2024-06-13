@@ -86,6 +86,10 @@
             min-height: 100%;
             z-index: -1;
         }
+
+        .border-show{
+            border: 2px solid #686868;
+        }
     </style>
     <title><?= $title ?? ''; ?></title>
 </head>

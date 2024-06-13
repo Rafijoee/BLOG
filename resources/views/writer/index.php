@@ -1,7 +1,7 @@
 <header style="position: fixed; top: 0; width: 100%; z-index: 1000;">
     <nav class="relative w-full z-20 top-0 left-0 bg-black border-gray-200 px-2 sm:px-4 rounded dark:border-gray-200 dark:bg-white m-0 mb-5 navbar-solid-bg">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-            <a href="#" class="flex items-center rtl:space-x-reverse">
+            <a href="="<?= urlpath('back') ?>" class="flex items-center rtl:space-x-reverse">
                 <img src="<?= urlpath('images/logo.png') ?>" alt="Logo" style="height: 50px;" />
                 <p class="pl-1"></p>
             </a>
@@ -61,16 +61,15 @@
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mx-20 my-10">
         <!-- Card 1 -->
-        
-        <?php foreach($blogs as $blog){?>
-        <div class="bg-white rounded-lg overflow-hidden shadow-md flex flex-col">
-        <img class=" rounded-t-lg h-full md:h-full md:w-52 object-cover md:rounded-none md:rounded-s-lg" src="<?= urlpath('assets/images/'.$blog['gambar']) ?>" alt="">
-            <div class="p-4 bg-black  flex-grow flex flex-col justify-between mt-4 rounded-b-lg">
-                <h3 class="text-lg font-semibold text-white"><?= $blog['judul'] ?></h3>
-                <hr>
-                <a href="<?= urlpath('blog?slug='.$blog['slug']) ?>" class="text-white border mt-4 hover-button py-2 px-4 rounded-lg text-center" style="border-radius: 1.5rem;">Read More</a>
+        <?php foreach ($blogs as $blog) { ?>
+            <div class="bg-white rounded-lg overflow-hidden shadow-md flex flex-col border">
+                <img class="mx-auto mx-4 mt-4 rounded-lg h-full md:h-full md:w-52 object-cover md:rounded-none md:rounded-lg block" src="<?= urlpath('assets/images/' . $blog['gambar']) ?>" alt="">
+                <div class="p-4 bg-black flex-grow flex flex-col justify-between mt-4 rounded-b-lg">
+                    <h3 class="text-lg font-semibold text-white"><?= $blog['judul'] ?></h3>
+                    <hr>
+                    <a href="<?= urlpath('blog?slug=' . $blog['slug']) ?>" class="text-white border mt-4 hover-button py-2 px-4 rounded-lg text-center" style="border-radius: 1.5rem;">Read More</a>
+                </div>
             </div>
-        </div>
         <?php } ?>
     </div>
 </main>

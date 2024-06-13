@@ -1,7 +1,7 @@
 <header style="position: fixed; top: 0; width: 100%; z-index: 1000;">
     <nav class="relative w-full z-20 top-0 left-0 bg-black border-gray-200 px-2 sm:px-4 rounded dark:border-gray-200 dark:bg-white m-0 mb-5 navbar-solid-bg">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-            <a href="#" class="flex items-center rtl:space-x-reverse">
+            <a href="="<?= urlpath('back') ?>" class="flex items-center rtl:space-x-reverse">
                 <img src="<?= urlpath('images/logo.png') ?>" alt="Logo" style="height: 50px;" />
                 <p class="pl-1"></p>
             </a>
@@ -11,13 +11,16 @@
             <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-cta">
                 <ul class="flex font-medium text-white space-x-8 items-center text-sm">
                     <li>
-                        <a href="#" class="block py-0 px-3 md:p-0 text-white bg-blue-700 rounded md:bg-transparent md:text-white md:dark:text-blue-500 custom-hover" aria-current="page">Blog</a>
-                    </li>
-                    <li>
                         <a href="#" class="block p-0 px-3 custom-hover md:p-0 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Sports</a>
                     </li>
                     <li>
                         <a href="#" class="block p-0 px-3 md:p-0 text-white custom-hover rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Foods</a>
+                    </li>
+                    <li>
+                        <a href="#" class="block p-0 px-3 md:p-0 text-white custom-hover rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">News</a>
+                    </li>
+                    <li>
+                        <a href="#" class="block p-0 px-3 md:p-0 text-white custom-hover rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Future</a>
                     </li>
                 </ul>
             </div>
@@ -50,18 +53,15 @@
         </a>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mx-20 my-10">
-        <!-- Card 1 -->
-        
-        <?php foreach($blogs as $blog){?>
-        <div class="bg-white rounded-lg overflow-hidden shadow-md flex flex-col">
-        <img class=" rounded-t-lg h-full md:h-full md:w-52 object-cover md:rounded-none md:rounded-s-lg" src="<?= urlpath('assets/images/'.$blog['gambar']) ?>" alt="">
-            <div class="p-4 bg-black  flex-grow flex flex-col justify-between mt-4 rounded-b-lg">
-                <h3 class="text-lg font-semibold text-white"><?= $blog['judul'] ?></h3>
-                <p class="mb-4" style="color: #A6AFB0">Deskripsi Kartu 1</p>
-                <hr>
-                <a href="<?= urlpath('blog?slug='.$blog['slug']) ?>" class="text-white border mt-4 hover-button py-2 px-4 rounded-lg text-center" style="border-radius: 1.5rem;">Read More</a>
+        <?php foreach ($blogs as $blog) { ?>
+            <div class="bg-white rounded-lg overflow-hidden shadow-md flex flex-col border">
+                <img class="mx-auto mx-4 mt-4 rounded-lg h-full md:h-full md:w-52 object-cover md:rounded-none md:rounded-lg block" src="<?= urlpath('assets/images/' . $blog['gambar']) ?>" alt="">
+                <div class="p-4 bg-black flex-grow flex flex-col justify-between mt-4 rounded-b-lg">
+                    <h3 class="text-lg font-semibold text-white"><?= $blog['judul'] ?></h3>
+                    <hr>
+                    <a href="<?= urlpath('blog?slug=' . $blog['slug']) ?>" class="text-white border mt-4 hover-button py-2 px-4 rounded-lg text-center" style="border-radius: 1.5rem;">Read More</a>
+                </div>
             </div>
-        </div>
         <?php } ?>
     </div>
 </main>

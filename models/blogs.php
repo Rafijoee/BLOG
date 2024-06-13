@@ -108,12 +108,12 @@ class Blog{
 
         return $arr;
     }
-    static function insert($judul, $slug, $penulis, $isi, $gambar, $category_id) {
+    static function insert($judul, $slug, $penulis, $isi, $gambar, $category_id, $created_at) {
         global $conn;
 
         // $penulis = $_SESSION['user']['id'];
         if($_SERVER["REQUEST_METHOD"] == "POST"){
-            $sql = "INSERT INTO blog (judul, slug, penulis, isi, gambar, category_id) VALUES ('$judul', '$slug', '$penulis', '$isi', '$gambar', '$category_id')";
+            $sql = "INSERT INTO blog (judul, slug, penulis, isi, gambar, category_id, created_at) VALUES ('$judul', '$slug', '$penulis', '$isi', '$gambar', '$category_id', '$created_at')";
 
             $hasil = mysqli_query($conn, $sql);
 

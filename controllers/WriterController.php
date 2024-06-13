@@ -18,7 +18,7 @@ class WriterController{
     }
 
     static function show(){
-        view('writer/show', ['url' => 'dashboard-writer/show', 'shows' => Blog::show($_SESSION['user']['username']), 'category' => Category::select($_SESSION['user']['id'])]);
+        view('writer/show', ['url' => 'dashboard-writer/show','users' => User::select($_SESSION['user']['id']), 'blogs' => Blog::show($_SESSION['user']['username']), 'category' => Category::select($_SESSION['user']['id'])]);
     }
 
     static function create(){
@@ -75,7 +75,8 @@ class WriterController{
                 $_SESSION['user']['id'],
                 $post['isi'],
                 $post['gambar'],
-                $post['category_id']
+                $post['category_id'],
+                date('Y-m-d H:i:s'),
             );
             // urlpath('dashboard-writer/show');
             // view('writer/show', ['url' => 'dashboard-writer/show', 'shows' => Recipe::show($_SESSION['user']['username']), 'category' => Category::select($_SESSION['user']['id'])]);
