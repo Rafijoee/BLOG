@@ -2,30 +2,33 @@
 
 include_once 'app/config/conn.php';
 
-class Blog{
-    static function select(){
+class Blog
+{
+    static function select()
+    {
         global $conn;
         $sql = "SELECT * FROM blog";
 
         $result = $conn->query($sql);
         $arr = [];
 
-        if($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()){
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
                 $arr[] = $row;
             }
         }
         return $arr;
     }
-    static function finds($slug) {
+    static function finds($slug)
+    {
         global $conn;
 
         // Menyiapkan query dengan placeholder untuk parameter
         $sql = "SELECT * FROM blog WHERE slug = ?";
-        
+
         // Menyiapkan statement
         $stmt = $conn->prepare($sql);
-        
+
         // Mengikat parameter ke statement
         $stmt->bind_param("s", $slug);
 
@@ -37,8 +40,8 @@ class Blog{
         $arr = [];
 
         // Memeriksa apakah ada hasil
-        if($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()){
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
                 $arr[] = $row;
             }
         }
@@ -48,7 +51,8 @@ class Blog{
 
         return $arr;
     }
-    static function show() {
+    static function show()
+    {
         global $conn;
 
         // Query pertama untuk mendapatkan informasi user berdasarkan username dari sesi
@@ -98,7 +102,7 @@ class Blog{
 
         // Memeriksa apakah hasil query kedua memiliki data
         if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()){
+            while ($row = $result->fetch_assoc()) {
                 $arr[] = $row;
             }
         }
@@ -108,56 +112,72 @@ class Blog{
 
         return $arr;
     }
-    static function insert($judul, $slug, $penulis, $isi, $gambar, $category_id, $created_at) {
+    static function insert($judul, $slug, $penulis, $isi, $gambar, $category_id, $created_at)
+    {
         global $conn;
 
         // $penulis = $_SESSION['user']['id'];
-        if($_SERVER["REQUEST_METHOD"] == "POST"){
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $sql = "INSERT INTO blog (judul, slug, penulis, isi, gambar, category_id, created_at) VALUES ('$judul', '$slug', '$penulis', '$isi', '$gambar', '$category_id', '$created_at')";
 
             $hasil = mysqli_query($conn, $sql);
 
-            if($hasil){
+            if ($hasil) {
                 return $hasil;
             } else {
                 echo "Gagal menambahkan data";
             }
         }
     }
-    static function update($judul, $slug, $penulis, $isi, $gambar, $category_id) {
+    static function update($judul, $slug, $penulis, $isi, $gambar, $category_id)
+    {
         global $conn;
-    
+
         $oldSlug = $_POST['oldSlug'];
-    
+
         // Prepare the SQL statement
         $stmt = $conn->prepare("UPDATE blog SET judul = ?, slug = ?, penulis = ?, isi = ?, gambar = ?, category_id = ? WHERE slug = ?");
-    
+
         // Bind the parameters to the SQL query
         $stmt->bind_param("sssssis", $judul, $slug, $penulis, $isi, $gambar, $category_id, $oldSlug);
-        
+
         // Execute the query
         $hasil = $stmt->execute();
-    
+
         if ($hasil) {
             return $hasil;
         } else {
             echo "Gagal mengupdate data";
         }
-    
+
         // Close the statement
         $stmt->close();
     }
 
-    static function destroy($id){
+    static function destroy($id)
+    {
         global $conn;
 
         $sql = "DELETE FROM blog WHERE id = $id";
         $hasil = $conn->query($sql);
 
-        if($hasil){
+        if ($hasil) {
             return $hasil;
         } else {
             echo "Gagal menghapus data";
         }
+    }
+    public static function getImageName($slug)
+    {
+        global $conn;
+
+        $sql = "SELECT gambar FROM blog WHERE slug = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("s", $slug);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+
+        return $row['gambar'];
     }
 }
