@@ -18,7 +18,7 @@
 </video>
 <div class="gradient-bg flex items-center justify-center min-h-screen">
     <div class="w-full max-w-md p-8 bg-gray-900 rounded-lg shadow-lg transform transition duration-500 hover:scale-105">
-        <h2 class="text-4xl font-bold text-white text-center mb-8">MASUK !</h2>
+        <h2 class="text-4xl font-bold text-white text-center mb-8">Login </h2>
         <form action="<?= urlpath('login') ?>" method="POST">
             <div class="mb-6 relative">
                 <label for="email" class="block text-sm font-medium text-gray-400">Email</label>
